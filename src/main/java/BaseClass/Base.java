@@ -18,6 +18,12 @@ public class Base {
         appiumServiceBuilder = new AppiumServiceBuilder();
         appiumServiceBuilder.usingAnyFreePort();
         appiumServiceBuilder.withArgument(GeneralServerFlag.LOG_LEVEL,"info");
+        appiumDriverLocalService = appiumDriverLocalService.buildService(appiumServiceBuilder);
+        appiumDriverLocalService.start();
+    }
+
+    public void stopSession(){
+        appiumDriverLocalService.stop();
     }
 
     public void serverCapabilities() {
@@ -32,5 +38,10 @@ public class Base {
     public void iosCapabilities() {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"XCUITest");
+    }
+
+    public static void main(String args[])
+    {
+
     }
 }
