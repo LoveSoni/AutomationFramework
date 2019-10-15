@@ -8,27 +8,33 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import org.openqa.selenium.WebDriver;
-import
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class Base{
+import java.io.File;
+
+public class Base {
     public AppiumDriver appDriver;
     public WebDriver webDriver;
     public AppiumServiceBuilder appiumServiceBuilder;
     public AppiumDriverLocalService appiumDriverLocalService;
     public Constants constants;
-    public PropertyReader propertyReader;
+    public PropertyReader propertyReader = new PropertyReader();
 
     public void startSession() {
-        propertyReader = new PropertyReader();
+        constants = new Constants();
         appiumServiceBuilder = new AppiumServiceBuilder();
         appiumServiceBuilder.usingAnyFreePort();
-        appiumServiceBuilder.withArgument(GeneralServerFlag.LOG_LEVEL,"info");
+        ///Users/love/Documents/AutomationFramework/src/main/resources/config.properties
+        String configFilePath = System.getProperty("user.dir") + constants.slash + "src" + constants.slash + "main" + constants.slash + "resources" + File.separator + "config.properties";
+        String capabilities = propertyReader.getValue("platformName", configFilePath);
+        appiumServiceBuilder.withCapabilities(clientCapabilities(capabilities));
+        appiumServiceBuilder.withIPAddress("127.0.0.1");//TODO Remove hardcoded value
+        appiumServiceBuilder.withArgument(GeneralServerFlag.LOG_LEVEL, "info");
         appiumDriverLocalService = appiumDriverLocalService.buildService(appiumServiceBuilder);
         appiumDriverLocalService.start();
     }
 
-    public void stopSession(){
+    public void stopSession() {
         appiumDriverLocalService.stop();
     }
 
@@ -36,20 +42,18 @@ public class Base{
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
     }
 
-    public DesiredCapabilities androidCapabilities() {
+    public DesiredCapabilities clientCapabilities(String typeCapabilities) {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UIAutomator2");
+        if (typeCapabilities.equalsIgnoreCase("android")) {
+            desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UIAutomator2");
+        } else {
+            desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
+        }
         return desiredCapabilities;
     }
 
-    public DesiredCapabilities iosCapabilities() {
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"XCUITest");
-        return desiredCapabilities;
-    }
-
-    public static void main(String args[])
-    {
-
+    public static void main(String args[]) {
+        Base base = new Base();
+        base.startSession();
     }
 }

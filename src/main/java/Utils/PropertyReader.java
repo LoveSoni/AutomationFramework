@@ -14,20 +14,19 @@ public class PropertyReader {
         try {
             fileInputStream = new FileInputStream(filePath);
         } catch (FileNotFoundException fe) {
-
+            fe.printStackTrace();
         }
         properties = new Properties();
         try {
             properties.load(fileInputStream);
         } catch (IOException ie) {
-
+            ie.printStackTrace();
         }
         value = properties.getProperty(key);
         return value;
     }
 
-    public String readConfig(String key)
-    {
+    public String readConfig(String key) {
         return "";
     }
 }
