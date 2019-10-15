@@ -25,4 +25,9 @@ public class PropertyReader {
         value = properties.getProperty(key);
         return value;
     }
+
+    public String readConfig(String key)
+    {
+        return "";
+    }
 }
