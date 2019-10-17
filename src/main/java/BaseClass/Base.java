@@ -27,7 +27,6 @@ public class Base {
         constants = new Constants();
         appiumServiceBuilder = new AppiumServiceBuilder();
         appiumServiceBuilder.usingAnyFreePort();
-        ///Users/love/Documents/AutomationFramework/src/main/resources/config.properties
         String configFilePath = System.getProperty("user.dir") + constants.slash + "src" + constants.slash + "main" + constants.slash + "resources" + File.separator + "config.properties";
         String capabilities = propertyReader.getValue("platformName", configFilePath);
         appiumServiceBuilder.withCapabilities(clientCapabilities(capabilities));
