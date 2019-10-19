@@ -3,6 +3,7 @@ package BaseClass;
 import Constants.Constants;
 import Utils.PropertyReader;
 
+import java.io.IOException;
 import java.net.URL;
 
 import io.appium.java_client.AppiumDriver;
@@ -12,6 +13,7 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import org.apache.log4j.Logger;
+import org.omg.SendingContext.RunTime;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -56,10 +58,24 @@ public class Base {
         if (typeCapabilities.equalsIgnoreCase("android")) {
             desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UIAutomator2");
             desiredCapabilities.setCapability(MobileCapabilityType.APP, constants.DEALER_APP_PATH);
+            desiredCapabilities.setCapability(MobileCapabilityType.UDID, "");
         } else {
             desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
         }
         return desiredCapabilities;
     }
 
+    public void getConnetedDeviceList() {
+        try {
+            Process process = Runtime.getRuntime().exec("adb devices");
+            logger.info("Output is :" + process.getInputStream().toString());
+        } catch (IOException e) {
+            logger.info(e.getMessage());
+        }
+    }
+
+    public static void main(String[] args) {
+        Base base = new Base();
+        base.getConnetedDeviceList();
+    }
 }
