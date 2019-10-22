@@ -1,0 +1,14 @@
+<suite name="Suite1" verbose="1" parallel="tests" thread-count="2">
+    <test name="Parallel Demo1">
+        <parameter name="udid" value="42006bcf9a2f84d3"/>
+        <classes>
+            <class name="parallelTests.runParallel"/>
+        </classes>
+    </test>
+    <test name="Parallel Demo2">
+        <parameter name="udid" value="192.168.43.179:5555"/>
+        <classes>
+            <class name="parallelTests.runParallel"/>
+        </classes>
+    </test>
+</suite>
