@@ -34,7 +34,6 @@ public class runParallel extends Base {
     @Test
     synchronized public void login() throws IOException {
         AdbUtility adbUtility = new AdbUtility();
-        String imagePath = System.getProperty("user.dir") + File.separator + "login.png";
         AppiumLocator.GetAppiumLocators();
 //        logger.info("Image path is :" + imagePath);
 //        driver.manage().timeouts().implicitlyWait(60, TimeUnit.DAYS.SECONDS);
