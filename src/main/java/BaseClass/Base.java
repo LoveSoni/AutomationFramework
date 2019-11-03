@@ -3,12 +3,10 @@ package BaseClass;
 import Constants.Constants;
 import Utils.PropertyReader;
 
-import java.io.IOException;
 import java.net.URL;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
@@ -18,8 +16,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
-import java.util.AbstractMap;
-import java.util.Map;
 
 public class Base {
     public AppiumDriver driver;
@@ -66,19 +62,5 @@ public class Base {
             desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
         }
         return desiredCapabilities;
-    }
-
-    public void getConnetedDeviceList() {
-        try {
-            Process process = Runtime.getRuntime().exec("adb devices");
-            logger.info("Output is :" + process.getInputStream().toString());
-        } catch (IOException e) {
-            logger.info(e.getMessage());
-        }
-    }
-
-    public static void main(String[] args) {
-        Base base = new Base();
-        base.getConnetedDeviceList();
     }
 }

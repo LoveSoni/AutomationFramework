@@ -10,6 +10,10 @@ public class Constants {
 
     public String APPIUM_DEFAULT_IP = "127.0.0.1";
 
+    public String PROJ_PATH = System.getProperty("user.dir");
+
+    public String RESOURCES_PROP_PATH = PROJ_PATH + slash + "src" + slash + "main" + slash + "resources";
+
     public int WAIT_TIME = 10;
 
 }

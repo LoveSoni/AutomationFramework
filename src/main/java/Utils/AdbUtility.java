@@ -1,5 +1,6 @@
 package Utils;
 
+import Constants.Constants;
 import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
@@ -7,18 +8,28 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class AdbUtility {
-    Logger logger = Logger.getLogger(AdbUtility.class);
+    private Logger logger = Logger.getLogger(AdbUtility.class);
+    private PropertyReader propertyReader = new PropertyReader();
+    private Constants constants = new Constants();
+    private final String shellPropertiesPath = constants.RESOURCES_PROP_PATH + constants.slash + "shellCommand.properties";
 
-    public void getListOfDevices(String[] args) {
+    public void getListOfAndroidDevices() {
+        String adbCommand = propertyReader.getValue("andDeviceList", shellPropertiesPath);
+        System.out.println(executeShellCommand(adbCommand));
+    }
+
+    public StringBuffer executeShellCommand(String command) {
+        String result = null;
+        StringBuffer adbLogs = new StringBuffer();
         try {
-            String line;
-            Process p = Runtime.getRuntime().exec("adb devices");
-            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            while ((line = input.readLine()) != null) {
-                logger.info(line);
+            Process process = Runtime.getRuntime().exec(command);
+            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            while ((result = input.readLine()) != null) {
+                adbLogs.append(result + "\n");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
+        return adbLogs;
     }
 }
