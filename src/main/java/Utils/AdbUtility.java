@@ -2,20 +2,26 @@ package Utils;
 
 import Constants.Constants;
 import org.apache.log4j.Logger;
+import org.apache.log4j.lf5.LogLevel;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdbUtility {
-    private Logger logger = Logger.getLogger(AdbUtility.class);
+    private LogUtility logger = new LogUtility(this.getClass());
     private PropertyReader propertyReader = new PropertyReader();
     private Constants constants = new Constants();
-    private final String shellPropertiesPath = constants.RESOURCES_PROP_PATH + constants.slash + "shellCommand.properties";
+
 
     public void getListOfAndroidDevices() {
-        String adbCommand = propertyReader.getValue("andDeviceList", shellPropertiesPath);
-        System.out.println(executeShellCommand(adbCommand));
+        List<String> udidList = new ArrayList<String>();
+        String adbCommand = propertyReader.getValue("andDeviceList", constants.SHELL_PROP_PATH);
+        String adbLogs = new String(executeShellCommand(adbCommand));
+        logger.logInfo(adbLogs);
     }
 
     public StringBuffer executeShellCommand(String command) {
@@ -28,8 +34,14 @@ public class AdbUtility {
                 adbLogs.append(result + "\n");
             }
         } catch (IOException e) {
-            logger.info(e.getMessage());
+            logger.logInfo(e.getMessage());
         }
+
         return adbLogs;
+    }
+
+    public static void main(String[] args) {
+
+        new AdbUtility().getListOfAndroidDevices();
     }
 }
