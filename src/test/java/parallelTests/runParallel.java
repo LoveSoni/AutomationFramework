@@ -5,7 +5,6 @@ import Utils.AdbUtility;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.Setting;
 import io.appium.java_client.android.AndroidDriver;
-import org.kushan.appium.locator.AppiumLocator;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -34,7 +33,6 @@ public class runParallel extends Base {
     @Test
     synchronized public void login() throws IOException {
         AdbUtility adbUtility = new AdbUtility();
-        AppiumLocator.GetAppiumLocators();
 //        logger.info("Image path is :" + imagePath);
 //        driver.manage().timeouts().implicitlyWait(60, TimeUnit.DAYS.SECONDS);
 //        driver.findElement(By.xpath("//android.widget.TextView[@text='NEXT']")).click();
