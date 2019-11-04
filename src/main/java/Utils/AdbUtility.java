@@ -29,6 +29,12 @@ public class AdbUtility {
         return udidList;
     }
 
+    public void getListOfiOSDevices() {
+        String ideviceCommand = propertyReader.getValue("iosDeviceList", constants.SHELL_PROP_PATH);
+        String ideviceLogs = new String(executeShellCommand(ideviceCommand));
+        System.out.print(ideviceLogs);
+    }
+
     public StringBuffer executeShellCommand(String command) {
         String result = null;
         StringBuffer adbLogs = new StringBuffer();
@@ -43,5 +49,9 @@ public class AdbUtility {
         }
 
         return adbLogs;
+    }
+
+    public static void main(String[] args) {
+        new AdbUtility().getListOfiOSDevices();
     }
 }
