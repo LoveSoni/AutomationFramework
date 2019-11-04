@@ -17,11 +17,16 @@ public class AdbUtility {
     private Constants constants = new Constants();
 
 
-    public void getListOfAndroidDevices() {
+    public List getListOfAndroidDevices() {
         List<String> udidList = new ArrayList<String>();
         String adbCommand = propertyReader.getValue("andDeviceList", constants.SHELL_PROP_PATH);
         String adbLogs = new String(executeShellCommand(adbCommand));
         logger.logInfo(adbLogs);
+        String lines[] = adbLogs.split("\\r?\\n");
+        for (int i = 1; i < lines.length; i++) {
+            udidList.add(lines[i].split("\t")[0].trim());
+        }
+        return udidList;
     }
 
     public StringBuffer executeShellCommand(String command) {
@@ -38,10 +43,5 @@ public class AdbUtility {
         }
 
         return adbLogs;
-    }
-
-    public static void main(String[] args) {
-
-        new AdbUtility().getListOfAndroidDevices();
     }
 }
