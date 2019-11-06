@@ -50,8 +50,4 @@ public class AdbUtility {
 
         return adbLogs;
     }
-
-    public static void main(String[] args) {
-        new AdbUtility().getListOfiOSDevices();
-    }
 }
