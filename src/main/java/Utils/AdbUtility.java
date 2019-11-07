@@ -29,10 +29,19 @@ public class AdbUtility {
         return udidList;
     }
 
-    public void getListOfiOSDevices() {
+    public List getListOfiOSDevices() {
+        List<String> udidList = new ArrayList<>();
         String ideviceCommand = propertyReader.getValue("iosDeviceList", constants.SHELL_PROP_PATH);
         String ideviceLogs = new String(executeShellCommand(ideviceCommand));
-        System.out.print(ideviceLogs);
+        String lines[] = ideviceLogs.split("\\r?\\n");
+        System.out.println(lines.length);
+        //Get list of Simulators
+        for (int i = 1; i < lines.length; i++) {
+            if (lines[i].contains("Simulator")) {
+                udidList.add((lines[i].substring(lines[i].indexOf('[') + 1, lines[i].indexOf(']'))));
+            }
+        }
+        return udidList;
     }
 
     public StringBuffer executeShellCommand(String command) {
