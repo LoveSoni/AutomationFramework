@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.Properties;
 
 public class PropertyReader {
-    public FileInputStream fileInputStream;
-    public FileOutputStream fileOutputStream;
+    private FileInputStream fileInputStream;
+    private FileOutputStream fileOutputStream;
 
     public String getValue(String key, String filePath) {
         String value = null;
@@ -45,5 +45,4 @@ public class PropertyReader {
             iE.printStackTrace();
         }
     }
-
 }

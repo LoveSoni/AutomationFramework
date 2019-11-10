@@ -16,6 +16,8 @@ public class Constants {
 
     public final String SHELL_PROP_PATH = RESOURCES_PROP_PATH + slash + "shellCommand.properties";
 
+    public final String CONFIG_PROP_PATH = RESOURCES_PROP_PATH + slash + "config.properties";
+
     public int WAIT_TIME = 10;
 
 }
