@@ -12,4 +12,6 @@ public class CommonUtility {
         String encodedString = Base64.getEncoder().encodeToString(fileContent);
         return encodedString;
     }
+
+
 }

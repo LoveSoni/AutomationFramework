@@ -56,7 +56,6 @@ public class AdbUtility {
         } catch (IOException e) {
             logger.logInfo(e.getMessage());
         }
-
         return adbLogs;
     }
 }

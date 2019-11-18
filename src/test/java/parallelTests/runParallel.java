@@ -2,6 +2,7 @@ package parallelTests;
 
 import BaseClass.Base;
 import Utils.AdbUtility;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.Setting;
 import io.appium.java_client.android.AndroidDriver;
@@ -15,8 +16,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class runParallel extends Base {
 
+public class runParallel extends Base {
+    //private ThreadLocal<AppiumDriver> driver = new ThreadLocal<>();
+    //bootstrap number
 //    runParallel()
 //    {
 //        PageFactory.initElements(new AppiumFieldDecorator(driver, Duration.ofSeconds(10)), this);

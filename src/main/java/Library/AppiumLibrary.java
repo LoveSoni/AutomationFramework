@@ -9,10 +9,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class AppiumLibrary extends Base {
     public Constants constants = new Constants();
 
-    public void click() {
-    }
-
     public void waitForElement(MobileElement element) {
         new WebDriverWait(driver, constants.WAIT_TIME).until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public void click(MobileElement element) {
+
+    }
+
+    public void enterText(MobileElement element, String text) {
+
     }
 }
