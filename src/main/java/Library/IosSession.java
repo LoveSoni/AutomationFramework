@@ -5,7 +5,7 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class IOSSession extends SessionManager {
+public class IosSession extends SessionManager {
     private AppiumDriver driver;
 
     @Override

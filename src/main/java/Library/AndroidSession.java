@@ -12,7 +12,7 @@ public class AndroidSession extends SessionManager {
 
     @Override
     public void initiateDriver(){
-        driver = new AndroidDriver(getAndroidCapabilities());
+        driver = new AndroidDriver(this.getAppiumServerURL(),getAndroidCapabilities());
     }
 
     @Override
