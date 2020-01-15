@@ -10,17 +10,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class AndroidSession extends SessionManager {
-    private AppiumDriver driver;
+    private AppiumDriver appiumDriver;
     private Base base;
+    private Driver driver;
 
     @Override
     public void initiateDriver(){
-        driver = new AndroidDriver(this.getAppiumServerURL(),getAndroidCapabilities());
+        appiumDriver = new AndroidDriver(this.getAppiumServerURL(),getAndroidCapabilities());
+        driver = new Driver(appiumDriver);
     }
 
     @Override
     public void quitDriver() {
-        driver.quit();
+        appiumDriver.quit();
+    }
+
+    @Override
+    public Driver getDriver(){
+        return driver;
     }
 
     public DesiredCapabilities getAndroidCapabilities(){

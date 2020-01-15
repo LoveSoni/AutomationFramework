@@ -1,16 +1,26 @@
 package Library;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class WebSession extends SessionManager {
-    private WebDriver driver;
+    private WebDriver webDriver;
+    private Driver driver;
+
     @Override
     public void initiateDriver(){
-        driver = new ChromeDriver();
+        WebDriverManager.chromedriver().setup();;
+        webDriver = new ChromeDriver();
+        driver = new Driver(webDriver);
     }
-    public void quitDriver()
-    {
-        driver.quit();
+
+    @Override
+    public Driver getDriver(){
+        return driver;
+    }
+
+    public void quitDriver(){
+        webDriver.quit();
     }
 }
