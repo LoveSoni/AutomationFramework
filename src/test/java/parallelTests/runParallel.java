@@ -30,7 +30,7 @@ public class runParallel extends Base {
     @Parameters({"udid"})
     @BeforeMethod
     public void setUp(String udid) {
-        initDriver(udid);
+       // initDriver(udid);
     }
 
     @Test
@@ -52,6 +52,6 @@ public class runParallel extends Base {
 
     @AfterMethod
     public void tearDown() {
-        stopSession();
+        //stopSession();
     }
 }

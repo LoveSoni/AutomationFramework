@@ -1,5 +1,7 @@
 package Utils;
 
+import Constants.Constants;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -25,5 +27,9 @@ public class PropertyUtility {
             System.out.println(e.getMessage());
         }
         return properties;
+    }
+    public static void main(String args[])
+    {
+       System.out.println("value is:"+getPropertyFile(Constants.DEFAULT_PROP_PATH).getProperty("platformOS"));
     }
 }
