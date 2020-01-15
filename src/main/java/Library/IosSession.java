@@ -10,26 +10,27 @@ public class IosSession extends SessionManager {
     private Driver driver;
 
     @Override
-    public void initiateDriver(){
-        appiumDriver = new IOSDriver(this.getAppiumServerURL(),getIOSCapabilities());
+    public void initiateDriver() {
+        appiumDriver = new IOSDriver(this.getAppiumServerURL(), getIOSCapabilities());
         driver = new Driver(appiumDriver);
     }
+
     @Override
     public void quitDriver() {
         appiumDriver.quit();
     }
 
     @Override
-    public Driver getDriver(){
+    public Driver getDriver() {
         return this.driver;
     }
 
-    public DesiredCapabilities getIOSCapabilities(){
+    public DesiredCapabilities getIOSCapabilities() {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability(MobileCapabilityType.UDID,"135bc7eea69bb01a6639c83db105061df7c7853a");
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"12.4.1");
-        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"iphone6s");
-        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"XCUITest");
+        desiredCapabilities.setCapability(MobileCapabilityType.UDID, "135bc7eea69bb01a6639c83db105061df7c7853a");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "12.4.1");
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iphone6s");
+        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
         return desiredCapabilities;
     }
 }
