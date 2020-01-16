@@ -1,13 +1,13 @@
 package BaseClass;
 
-import Library.AndroidSession;
-import Library.IosSession;
-import Library.SessionManager;
-import Library.WebSession;
+import Library.*;
 import Utils.EnvironmentParameters;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class Base {
     private SessionManager sessionManager;
+    private Driver driver;
 
     public Base() {
         if (EnvironmentParameters.getPlatformOS().equalsIgnoreCase("android")) {
@@ -19,6 +19,17 @@ public class Base {
         }
     }
 
+    @BeforeMethod
+    public void setUp(){
+        if(sessionManager.getDriver().getWebDriver() == null){
+            sessionManager.startAppiumSever();
+        }
+        sessionManager.initiateDriver();
+    }
 
+    @AfterMethod
+    public void tearDown(){
+        sessionManager.quitDriver();
+    }
 
 }
