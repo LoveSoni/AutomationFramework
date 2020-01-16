@@ -21,10 +21,9 @@ public class Base {
 
     @BeforeMethod
     public void setUp(){
-        if(sessionManager.getDriver().getWebDriver() == null){
-            sessionManager.startAppiumSever();
-        }
+        sessionManager.startAppiumSever();
         sessionManager.initiateDriver();
+        driver = sessionManager.getDriver();
     }
 
     @AfterMethod
