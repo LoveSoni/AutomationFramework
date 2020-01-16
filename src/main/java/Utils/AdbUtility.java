@@ -1,6 +1,7 @@
 package Utils;
 
 import Constants.Constants;
+import javafx.beans.property.Property;
 import org.apache.log4j.Logger;
 import org.apache.log4j.lf5.LogLevel;
 
@@ -13,13 +14,12 @@ import java.util.List;
 
 public class AdbUtility {
     private LogUtility logger = new LogUtility(this.getClass());
-    private PropertyReader propertyReader = new PropertyReader();
     private Constants constants = new Constants();
 
 
     public List getListOfAndroidDevices() {
         List<String> udidList = new ArrayList<String>();
-        String adbCommand = propertyReader.getValue("andDeviceList", constants.SHELL_PROP_PATH);
+        String adbCommand = PropertyUtility.getPropertyFile(Constants.SHELL_PROP_PATH).getProperty("andDeviceList" );
         String adbLogs = new String(executeShellCommand(adbCommand));
         logger.logInfo(adbLogs);
         String lines[] = adbLogs.split("\\r?\\n");
@@ -31,7 +31,7 @@ public class AdbUtility {
 
     public List getListOfiOSDevices() {
         List<String> udidList = new ArrayList<>();
-        String ideviceCommand = propertyReader.getValue("iosDeviceList", constants.SHELL_PROP_PATH);
+        String ideviceCommand = PropertyUtility.getPropertyFile(Constants.SHELL_PROP_PATH).getProperty("iosDeviceList");
         String ideviceLogs = new String(executeShellCommand(ideviceCommand));
         String lines[] = ideviceLogs.split("\\r?\\n");
         System.out.println(lines.length);
