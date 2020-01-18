@@ -9,8 +9,8 @@ import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import java.net.URL;
 
 public abstract class SessionManager {
-    public AppiumDriverLocalService appiumDriverLocalService;
-    public AppiumServiceBuilder appiumServiceBuilder;
+    private AppiumDriverLocalService appiumDriverLocalService;
+    private AppiumServiceBuilder appiumServiceBuilder;
 
     public abstract void quitDriver();
 

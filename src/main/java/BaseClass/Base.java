@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeMethod;
 
 public class Base {
     private SessionManager sessionManager;
-    private Driver driver;
+    public Driver driver;
 
     public Base() {
         if (EnvironmentParameters.getPlatformOS().equalsIgnoreCase("android")) {
