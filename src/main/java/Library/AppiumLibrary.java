@@ -11,9 +11,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class AppiumLibrary extends Base {
 
     private AppiumDriver driver;
+    private LocatorsUtil locatorsUtil;
 
     public AppiumLibrary(){
        driver = super.driver.getMobileDriver();
+       locatorsUtil = new LocatorsUtil();
     }
 
     public void waitForElement(MobileElement element) {
@@ -21,10 +23,15 @@ public class AppiumLibrary extends Base {
     }
 
     public void click(String element) {
-
+        driver.findElement(getElement(element)).click();
     }
 
     public void enterText(MobileElement element, String text) {
 
+    }
+
+    public By getElement(String locator)
+    {
+        return locatorsUtil.getElement(locator);
     }
 }
