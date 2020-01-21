@@ -5,6 +5,7 @@ import Constants.Constants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,15 +24,16 @@ public class AppiumLibrary extends Base {
     }
 
     public void click(String locator) {
-        driver.findElement(getElement(locator)).click();
+        getElement(locator).click();
     }
 
     public void enterText(String locator, String text) {
-        driver.findElement(getElement(locator)).sendKeys(text);
+        click(locator);
+        getElement(locator).sendKeys(text);
     }
 
-    public By getElement(String locator)
+    public WebElement getElement(String locator)
     {
-        return locatorsUtil.getElement(locator);
+        return driver.findElement(locatorsUtil.getElement(locator));
     }
 }
