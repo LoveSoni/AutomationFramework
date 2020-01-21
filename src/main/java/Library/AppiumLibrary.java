@@ -19,15 +19,15 @@ public class AppiumLibrary extends Base {
     }
 
     public void waitForElement(MobileElement element) {
-   //     new WebDriverWait(driver, constants.WAIT_TIME).until(ExpectedConditions.visibilityOf(element));
+         new WebDriverWait(driver, Constants.WAIT_TIME).until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void click(String element) {
-        driver.findElement(getElement(element)).click();
+    public void click(String locator) {
+        driver.findElement(getElement(locator)).click();
     }
 
-    public void enterText(MobileElement element, String text) {
-
+    public void enterText(String locator, String text) {
+        driver.findElement(getElement(locator)).sendKeys(text);
     }
 
     public By getElement(String locator)
