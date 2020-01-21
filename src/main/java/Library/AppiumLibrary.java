@@ -32,8 +32,8 @@ public class AppiumLibrary extends Base {
         getElement(locator).sendKeys(text);
     }
 
-    public WebElement getElement(String locator)
+    public MobileElement getElement(String locator)
     {
-        return driver.findElement(locatorsUtil.getElement(locator));
+        return (MobileElement) driver.findElement(locatorsUtil.getElement(locator));
     }
 }
