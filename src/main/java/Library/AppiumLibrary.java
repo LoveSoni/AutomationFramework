@@ -7,6 +7,10 @@ import io.appium.java_client.MobileElement;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
+import java.time.LocalDateTime;
+import java.util.Date;
 
 public class AppiumLibrary extends Base {
 
@@ -23,13 +27,9 @@ public class AppiumLibrary extends Base {
     }
 
     public void enterText(String locator, String text) {
+        if(isElementPresent(locator,10)){
         click(locator);
-        getElement(locator).sendKeys(text);
-    }
-
-    public MobileElement getElement(String locator)
-    {
-        return (MobileElement) driver.findElement(locatorsUtil.getElement(locator));
+        getElement(locator).sendKeys(text);}
     }
 
     public boolean isElementPresent(String locator ,int time)
@@ -51,4 +51,10 @@ public class AppiumLibrary extends Base {
         WebDriverWait webDriverWait = new WebDriverWait(driver,time);
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locatorsUtil.getElement(locator)));
     }
+    public MobileElement getElement(String locator)
+    {
+        return (MobileElement) driver.findElement(locatorsUtil.getElement(locator));
+    }
+
+
 }
