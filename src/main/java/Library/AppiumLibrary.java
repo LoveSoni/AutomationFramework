@@ -45,6 +45,21 @@ public class AppiumLibrary extends Base {
         return isPresent;
     }
 
+    public String getText(String locator)
+    {
+        return getElement(locator).getText();
+    }
+
+    public void closeKeyboard()
+    {
+        driver.hideKeyboard();
+    }
+
+    public void pressBack()
+    {
+        driver.navigate().back();
+    }
+
     public void enterText(String locator, String text) {
         if (isElementPresent(locator, 10)) {
             click(locator);
