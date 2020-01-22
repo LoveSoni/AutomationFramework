@@ -9,6 +9,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * author Love
+ */
+
 public class PropertyUtility {
     private static FileInputStream fileInputStream;
     private static FileOutputStream fileOutputStream;

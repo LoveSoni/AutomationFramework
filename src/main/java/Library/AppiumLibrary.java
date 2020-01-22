@@ -7,7 +7,9 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.sql.Time;
+/**
+ * author Love
+ */
 
 public class AppiumLibrary extends Base {
 

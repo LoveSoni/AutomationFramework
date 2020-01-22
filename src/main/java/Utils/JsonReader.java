@@ -7,6 +7,10 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * author Love
+ */
+
 public class JsonReader {
     public Logger logger = Logger.getLogger(JsonReader.class);
     public JSONObject jsonObject;

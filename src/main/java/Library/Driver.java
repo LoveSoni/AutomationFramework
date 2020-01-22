@@ -5,6 +5,10 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.WebDriver;
 
+/**
+ * author Love
+ */
+
 public class Driver {
     private AppiumDriver appiumDriver;
 

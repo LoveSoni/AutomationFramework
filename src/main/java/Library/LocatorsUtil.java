@@ -1,8 +1,11 @@
 package Library;
 
 import io.appium.java_client.MobileBy;
-import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.By;
+
+/**
+ * author Love
+ */
 
 public class LocatorsUtil {
     private By by;

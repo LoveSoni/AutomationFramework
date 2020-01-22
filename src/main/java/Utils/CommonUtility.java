@@ -6,6 +6,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Base64;
 
+/**
+ * author Love
+ */
+
 public class CommonUtility {
     public String getReferenceImageB64(String imgPath) throws IOException {
         byte[] fileContent = FileUtils.readFileToByteArray(new File(imgPath));

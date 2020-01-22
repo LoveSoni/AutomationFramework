@@ -8,6 +8,10 @@ import io.appium.java_client.service.local.flags.GeneralServerFlag;
 
 import java.net.URL;
 
+/**
+ * author Love
+ */
+
 public abstract class SessionManager {
     private AppiumDriverLocalService appiumDriverLocalService;
     private AppiumServiceBuilder appiumServiceBuilder;

@@ -12,6 +12,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * author Love
+ */
+
 public class AdbUtility {
     private LogUtility logger = new LogUtility(this.getClass());
     private Constants constants = new Constants();

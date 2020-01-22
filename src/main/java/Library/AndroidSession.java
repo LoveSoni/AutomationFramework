@@ -6,6 +6,10 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+/**
+ * author Love
+ */
+
 public class AndroidSession extends SessionManager {
     private AppiumDriver appiumDriver;
     private Base base;

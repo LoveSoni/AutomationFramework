@@ -1,8 +1,12 @@
 package Utils;
 
 import Constants.Constants;
-
 import java.util.Properties;
+
+/**
+ * author Love
+ */
+
 
 public class EnvironmentParameters {
     private static String platformOS = System.getProperty("platformOS");

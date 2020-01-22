@@ -1,8 +1,10 @@
 package Utils;
 
-import org.apache.log4j.Category;
 import org.apache.log4j.Logger;
-import org.apache.log4j.lf5.LogLevel;
+
+/**
+ * author Love
+ */
 
 public class LogUtility {
     private Class className;
