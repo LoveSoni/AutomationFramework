@@ -19,10 +19,30 @@ public class AppiumLibrary extends Base {
         locatorsUtil = new LocatorsUtil();
     }
 
-    public void click(String locator) {
+    public void clickIfPresent(String locator) {
         if (isElementPresent(locator, 10)) {
             getElement(locator).click();
         }
+    }
+
+    public void click(String locator)
+    {
+        isElementPresent(locator,10);
+        getElement(locator).click();
+    }
+
+    public boolean isElementPresent(String locator)
+    {
+        boolean isPresent = false;
+        WebDriverWait webDriverWait = new WebDriverWait(driver,10);
+        try{
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(locatorsUtil.getElement(locator)));
+            isPresent = true;
+        }catch (TimeoutException e)
+        {
+            //log msg here
+        }
+        return isPresent;
     }
 
     public void enterText(String locator, String text) {
