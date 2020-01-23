@@ -7,6 +7,7 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 
 import java.net.URL;
+import java.util.logging.Logger;
 
 /**
  * author Love
@@ -15,7 +16,6 @@ import java.net.URL;
 public abstract class SessionManager {
     private AppiumDriverLocalService appiumDriverLocalService;
     private AppiumServiceBuilder appiumServiceBuilder;
-
     public abstract void quitDriver();
 
     public abstract void initiateDriver();
@@ -29,6 +29,7 @@ public abstract class SessionManager {
         appiumServiceBuilder.withArgument(GeneralServerFlag.LOG_LEVEL, "warn");
         appiumDriverLocalService = AppiumDriverLocalService.buildService(appiumServiceBuilder);
         appiumDriverLocalService.start();
+
     }
 
     public URL getAppiumServerURL() {
