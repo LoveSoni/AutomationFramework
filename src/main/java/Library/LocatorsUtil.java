@@ -1,14 +1,16 @@
 package Library;
 
 import io.appium.java_client.MobileBy;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 
 /**
- *
+ *author Love
  */
 
 public class LocatorsUtil {
     private By by;
+    private Logger logger = Logger.getLogger(LocatorsUtil.class);
 
     public By getElement(String locator){
         String testId[] = locator.split("_");
@@ -44,7 +46,7 @@ public class LocatorsUtil {
                 by = MobileBy.tagName(prefix);
                 break;
             default:
-                    // write log : Locator {prefix} is incorrect please check in the property file
+                logger.error("locator prefix "+locator +" is incorrect please check in property file");
         }
         return by;
     }

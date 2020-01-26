@@ -10,6 +10,7 @@ import java.util.Properties;
 
 public class EnvironmentParameters {
     private static String platformOS = System.getProperty("platformOS");
+
     private static Properties defaultPropertiesPath = PropertyUtility.getPropertyFile(Constants.DEFAULT_PROP_PATH);
 
     public static String getPlatformOS(){

@@ -3,6 +3,7 @@ package Library;
 import BaseClass.Base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,6 +16,7 @@ public class AppiumLibrary extends Base {
 
     private AppiumDriver driver;
     private LocatorsUtil locatorsUtil;
+    private Logger logger = Logger.getLogger(AppiumLibrary.class);
 
     public AppiumLibrary() {
         driver = super.driver.getMobileDriver();
@@ -42,7 +44,7 @@ public class AppiumLibrary extends Base {
             isPresent = true;
         }catch (TimeoutException e)
         {
-            //log msg here
+           logger.error(e.getMessage());
         }
         return isPresent;
     }
@@ -76,7 +78,7 @@ public class AppiumLibrary extends Base {
             isPresent = true;
         }catch (TimeoutException exception)
         {
-            //log exception here
+            logger.error(exception.getMessage());
         }
         return isPresent;
     }
