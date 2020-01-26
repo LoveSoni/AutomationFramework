@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 
 public class LocatorsUtil {
     private By by;
+
     public By getElement(String locator){
         String testId[] = locator.split("_");
         String suffix = testId[0];
