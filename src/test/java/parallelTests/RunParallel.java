@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
-public class runParallel extends Base {
+public class RunParallel extends Base {
     //private ThreadLocal<AppiumDriver> driver = new ThreadLocal<>();
     //bootstrap number
 //    runParallel()
@@ -35,7 +35,6 @@ public class runParallel extends Base {
 
     @Test
     synchronized public void login() throws IOException {
-        AdbUtility adbUtility = new AdbUtility();
 //        logger.info("Image path is :" + imagePath);
 //        driver.manage().timeouts().implicitlyWait(60, TimeUnit.DAYS.SECONDS);
 //        driver.findElement(By.xpath("//android.widget.TextView[@text='NEXT']")).click();
