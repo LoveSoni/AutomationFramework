@@ -18,8 +18,6 @@ import java.util.List;
 
 public class AdbUtility {
     private LogUtility logger = new LogUtility(this.getClass());
-    private Constants constants = new Constants();
-
 
     public List getListOfAndroidDevices() {
         List<String> udidList = new ArrayList<String>();
@@ -57,6 +55,7 @@ public class AdbUtility {
             while ((result = input.readLine()) != null) {
                 adbLogs.append(result + "\n");
             }
+            input.close();
         } catch (IOException e) {
             logger.logInfo(e.getMessage());
         }
