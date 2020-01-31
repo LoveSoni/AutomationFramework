@@ -24,7 +24,7 @@ public class PropertyUtility {
         try {
             fileInputStream = new FileInputStream(filePath);
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
         try {
             properties.load(fileInputStream);
