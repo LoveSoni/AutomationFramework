@@ -1,24 +1,20 @@
 package Utils;
 
 import org.apache.http.Header;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import java.io.Closeable;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
+/**
+ * author Love
+ */
 public class ApiUtility {
     private Logger logger = Logger.getLogger(ApiUtility.class);
 
