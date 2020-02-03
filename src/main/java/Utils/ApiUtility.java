@@ -22,27 +22,6 @@ import java.util.Map;
 public class ApiUtility {
     private Logger logger = Logger.getLogger(ApiUtility.class);
 
-    public void getCallWithHeaders(HashMap<String, String> newHeader) throws Exception {
-        String endPointUrl = "https://reqres.in/api/users";
-        CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet(endPointUrl);
-        CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpGet);
-        logger.info(closeableHttpResponse.getStatusLine().getStatusCode());
-        String response = EntityUtils.toString(closeableHttpResponse.getEntity());
-        JSONParser jsonParser = new JSONParser();
-        JSONObject jsonObject = (JSONObject) jsonParser.parse(response);
-        logger.info("Response json is " + jsonObject);
-        Header[] headersList = closeableHttpResponse.getAllHeaders();
-        HashMap<String, String> headerMap = new HashMap<String, String>();
-        for (Header header : headersList) {
-            headerMap.put(header.getName(), header.getValue());
-        }
-        for (Map.Entry<String, String> header : headerMap.entrySet()) {
-            httpGet.addHeader(header.getKey(), header.getValue());
-            logger.info(header.getKey() + "::" + header.getValue());
-        }
-    }
-
     public CloseableHttpResponse getRequest(String url) {
         CloseableHttpResponse closeableHttpResponse = null;
         CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
