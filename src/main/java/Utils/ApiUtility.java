@@ -55,40 +55,28 @@ public class ApiUtility {
         return closeableHttpResponse;
     }
 
-    public JSONObject getResponseObject(CloseableHttpResponse closeableHttpResponse)
-    {
+    public JSONObject getResponseObject(CloseableHttpResponse closeableHttpResponse) {
         JSONObject responseObject = null;
         try {
             JSONParser jsonParser = new JSONParser();
-           responseObject =  (JSONObject) jsonParser.parse(EntityUtils.toString(closeableHttpResponse.getEntity()));
-        }catch (Exception e)
-        {
+            responseObject = (JSONObject) jsonParser.parse(EntityUtils.toString(closeableHttpResponse.getEntity()));
+        } catch (Exception e) {
             logger.error(e.getMessage());
         }
         return responseObject;
     }
 
-    public int getStatusLine(CloseableHttpResponse closeableHttpResponse)
-    {
-       return closeableHttpResponse.getStatusLine().getStatusCode();
+    public int getStatusLine(CloseableHttpResponse closeableHttpResponse) {
+        return closeableHttpResponse.getStatusLine().getStatusCode();
     }
 
-    public HashMap<String,String> getHeadersList(CloseableHttpResponse closeableHttpResponse)
-    {
-        HashMap<String,String> headersMap = new HashMap<>();
+    public HashMap<String, String> getHeadersList(CloseableHttpResponse closeableHttpResponse) {
+        HashMap<String, String> headersMap = new HashMap<>();
         Header[] headers = closeableHttpResponse.getAllHeaders();
-        for(Header head : headers)
-        {
-            headersMap.put(head.getName(),head.getValue());
+        for (Header head : headers) {
+            headersMap.put(head.getName(), head.getValue());
         }
         return headersMap;
     }
 
-    public static void main(String[] args) {
-      ApiUtility apiUtility = new ApiUtility();
-       CloseableHttpResponse closeableHttpResponse =  apiUtility.getRequest("https://reqres.in/api/users");
-      JSONObject responseObject = apiUtility.getResponseObject(closeableHttpResponse);
-      System.out.println("response object in main:"+responseObject);
-      System.out.println("status code in main :"+apiUtility.getStatusLine(closeableHttpResponse));
-    }
 }
