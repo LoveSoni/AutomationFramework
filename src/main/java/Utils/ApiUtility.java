@@ -14,6 +14,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -67,9 +68,27 @@ public class ApiUtility {
         return responseObject;
     }
 
+    public int getStatusLine(CloseableHttpResponse closeableHttpResponse)
+    {
+       return closeableHttpResponse.getStatusLine().getStatusCode();
+    }
+
+    public HashMap<String,String> getHeadersList(CloseableHttpResponse closeableHttpResponse)
+    {
+        HashMap<String,String> headersMap = new HashMap<>();
+        Header[] headers = closeableHttpResponse.getAllHeaders();
+        for(Header head : headers)
+        {
+            headersMap.put(head.getName(),head.getValue());
+        }
+        return headersMap;
+    }
+
     public static void main(String[] args) {
       ApiUtility apiUtility = new ApiUtility();
-      JSONObject responseObject = apiUtility.getResponseObject(apiUtility.getRequest("https://reqres.in/api/users"));
-      System.out.println("status code in main:"+responseObject);
+       CloseableHttpResponse closeableHttpResponse =  apiUtility.getRequest("https://reqres.in/api/users");
+      JSONObject responseObject = apiUtility.getResponseObject(closeableHttpResponse);
+      System.out.println("response object in main:"+responseObject);
+      System.out.println("status code in main :"+apiUtility.getStatusLine(closeableHttpResponse));
     }
 }
