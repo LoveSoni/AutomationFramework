@@ -1,13 +1,5 @@
 package DynamicSuite;
 
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import javafx.scene.chart.XYChart;
-import org.aspectj.weaver.patterns.HasThisTypePatternTriedToSneakInSomeGenericOrParameterizedTypePatternMatchingStuffAnywhereVisitor;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.TestNG;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
@@ -17,8 +9,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 public class DynamicTestNG {
     public void runTestNGTest(Map<String, String> testngParams) {   //Create an instance on TestNG
@@ -95,7 +85,6 @@ public class DynamicTestNG {
 //        dt.runTestNGTest(testngParams);
         List list = new ArrayList();
         List synchronizedList = Collections.synchronizedList(list);
-
     }
 
 
