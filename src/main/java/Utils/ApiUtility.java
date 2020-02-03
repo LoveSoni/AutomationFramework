@@ -54,20 +54,22 @@ public class ApiUtility {
         return closeableHttpResponse;
     }
 
-    public String getStatusCode(CloseableHttpResponse closeableHttpResponse)
+    public JSONObject getResponseObject(CloseableHttpResponse closeableHttpResponse)
     {
-        String statusLine = null;
+        JSONObject responseObject = null;
         try {
-            statusLine = EntityUtils.toString(closeableHttpResponse.getEntity());
-        }catch (IOException e)
+            JSONParser jsonParser = new JSONParser();
+           responseObject =  (JSONObject) jsonParser.parse(EntityUtils.toString(closeableHttpResponse.getEntity()));
+        }catch (Exception e)
         {
             logger.error(e.getMessage());
         }
-        return statusLine;
+        return responseObject;
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
       ApiUtility apiUtility = new ApiUtility();
-      apiUtility.getRequest("https://reqres.in/api/users");
+      JSONObject responseObject = apiUtility.getResponseObject(apiUtility.getRequest("https://reqres.in/api/users"));
+      System.out.println("status code in main:"+responseObject);
     }
 }
