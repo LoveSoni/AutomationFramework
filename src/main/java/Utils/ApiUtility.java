@@ -56,4 +56,13 @@ public class ApiUtility {
         return headersMap;
     }
 
+    public void sendRequest(String url,String requestType,HashMap<String,String> headerList)
+    {
+        switch (requestType.toUpperCase()) {
+            case "GET":
+                getRequest(url);
+                break;
+        }
+    }
+
 }
