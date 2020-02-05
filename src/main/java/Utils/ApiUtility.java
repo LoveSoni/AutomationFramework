@@ -1,6 +1,8 @@
 package Utils;
 
 import org.apache.http.Header;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -18,19 +20,19 @@ import java.util.HashMap;
 public class ApiUtility {
     private Logger logger = Logger.getLogger(ApiUtility.class);
 
-    public CloseableHttpResponse getRequest(String url) {
-        CloseableHttpResponse closeableHttpResponse = null;
-        CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
+    public HttpResponse getRequest(String url) {
+        HttpResponse httpResponse = null;
+        HttpClient httpClient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet(url);
         try {
-            closeableHttpResponse = closeableHttpClient.execute(httpGet);
+            httpResponse = httpClient.execute(httpGet);
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
-        return closeableHttpResponse;
+        return httpResponse;
     }
 
-    public JSONObject getResponseObject(CloseableHttpResponse closeableHttpResponse) {
+    public JSONObject getResponseObject(HttpResponse closeableHttpResponse) {
         JSONObject responseObject = null;
         try {
             JSONParser jsonParser = new JSONParser();
@@ -41,13 +43,13 @@ public class ApiUtility {
         return responseObject;
     }
 
-    public int getStatusLine(CloseableHttpResponse closeableHttpResponse) {
-        return closeableHttpResponse.getStatusLine().getStatusCode();
+    public int getStatusLine(HttpResponse httpResponse) {
+        return httpResponse.getStatusLine().getStatusCode();
     }
 
-    public HashMap<String, String> getHeadersList(CloseableHttpResponse closeableHttpResponse) {
+    public HashMap<String, String> getHeadersList(HttpResponse httpResponse) {
         HashMap<String, String> headersMap = new HashMap<>();
-        Header[] headers = closeableHttpResponse.getAllHeaders();
+        Header[] headers = httpResponse.getAllHeaders();
         for (Header head : headers) {
             headersMap.put(head.getName(), head.getValue());
         }
