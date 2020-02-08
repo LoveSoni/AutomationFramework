@@ -1,20 +1,25 @@
 package Utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * author Love
@@ -58,8 +63,7 @@ public class ApiUtility {
         return headersMap;
     }
 
-    public void sendRequest(String url,String requestType,HashMap<String,String> headerList)
-    {
+    public void sendRequest(String url, String requestType, HashMap<String, String> headerList) {
         switch (requestType.toUpperCase()) {
             case "GET":
                 getRequest(url);
@@ -68,12 +72,15 @@ public class ApiUtility {
         }
     }
 
-    public static void main(String args[]) throws Exception{
+    public HttpResponse getRequest(String url, HashMap<String, String> header, JSONObject resonseBody) throws Exception {
         HttpClient httpClient = HttpClients.createDefault();
-        HttpPost httpPost  = new HttpPost("https://reqres.in/api/register");
-        ObjectMapper objectMapper = new ObjectMapper();
-        POJOClass pojoClass = new POJOClass();
-        File jsonFile = new File("/Users/love/Documents/AutomationFramework/src/main/java/Utils/generate.json");
-        objectMapper.writeValue(jsonFile,pojoClass);
+        HttpPost httpPost = new HttpPost(url);
+        for (Map.Entry<String, String> map : header.entrySet()) {
+            httpPost.setHeader(map.getKey(), map.getValue());
+        }
+        StringEntity stringEntity = new StringEntity(resonseBody.toString());
+        httpPost.setEntity(stringEntity);
+        HttpResponse httpResponse = httpClient.execute(httpPost);
+        return httpResponse;
     }
 }
