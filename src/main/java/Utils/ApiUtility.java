@@ -72,7 +72,7 @@ public class ApiUtility {
         }
     }
 
-    public HttpResponse getRequest(String url, HashMap<String, String> header, JSONObject resonseBody) throws Exception {
+    public HttpResponse postRequest(String url, HashMap<String, String> header, JSONObject resonseBody) throws Exception {
         HttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost(url);
         for (Map.Entry<String, String> map : header.entrySet()) {
