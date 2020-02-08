@@ -11,6 +11,8 @@ import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.testng.annotations.Test;
+
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -62,6 +64,7 @@ public class ApiUtility {
             case "GET":
                 getRequest(url);
                 break;
+            case "POST":
         }
     }
 
