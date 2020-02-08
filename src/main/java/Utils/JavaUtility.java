@@ -1,5 +1,6 @@
 package Utils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -51,6 +52,15 @@ public class JavaUtility {
         try {
             Thread.sleep(seconds * 1000);
         } catch (InterruptedException e) {
+            logger.error(e.getMessage());
+        }
+    }
+
+    public static void marshelling(File jsonFilePath, Object classObject) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            objectMapper.writeValue(jsonFilePath, classObject);
+        } catch (IOException e) {
             logger.error(e.getMessage());
         }
     }

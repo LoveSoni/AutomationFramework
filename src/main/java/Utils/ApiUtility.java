@@ -1,22 +1,20 @@
 package Utils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.testng.annotations.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * author Love
@@ -73,7 +71,9 @@ public class ApiUtility {
     public static void main(String args[]) throws Exception{
         HttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost  = new HttpPost("https://reqres.in/api/register");
-
-        httpPost.setEntity();
+        ObjectMapper objectMapper = new ObjectMapper();
+        POJOClass pojoClass = new POJOClass();
+        File jsonFile = new File("/Users/love/Documents/AutomationFramework/src/main/java/Utils/generate.json");
+        objectMapper.writeValue(jsonFile,pojoClass);
     }
 }
